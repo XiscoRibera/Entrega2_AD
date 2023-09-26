@@ -4,3 +4,53 @@ format: html
 toc: True
 editor: visual
 ---
+```{r, warning=FALSE}
+library(tidyverse)
+datos = mpg
+head(datos)
+```
+#Problema 1
+
+**Dibujad un gráfico que permita visualizar el número de vehículos de cada fabricante del conjunto de datos.**
+
+```{r}
+datos %>% 
+  ggplot(aes(x=manufacturer))+
+  geom_bar(fill = "blue")+
+  labs(x="Fabricante", y = "Número de vehículos")+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle=90,size=12),
+        axis.title = element_text(size=12, face = "bold"))
+```
+
+
+#Problema 2
+
+**Dibujad un gráfico para mostrar el rendimiento medio en ciudad para cada clase.**
+
+```{r}
+ggplot(data = datos, aes(x = class, y = cty)) +
+  geom_boxplot(aes(color = class), width = 0.3, 
+               show.legend = FALSE)+ 
+  geom_jitter(aes(color = class), alpha = 0.5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = 0.2, seed = 0))+
+  theme_bw()+
+  scale_color_manual(values = c("hotpink","goldenrod1","lightgreen","turquoise","deepskyblue1" ,"purple","salmon")) +
+  labs(x = "Tipo de vehículo", y = "Rendimiento en ciudad")+
+  theme(axis.text.x = element_text(size=12),
+        axis.title = element_text(size=12, face = "bold"))
+```
+
+
+
+
+#Problema 3
+
+**Construid un gráfico para mostrar el rendimiento medio en ciudad para cada clase y tipo de tracción simultáneamente.**
+
+#Problema 4
+**Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
+
+#Problema 5
+**Comparad la distribución del rendimiento en ciudad para distintos tipos de tracción.**
