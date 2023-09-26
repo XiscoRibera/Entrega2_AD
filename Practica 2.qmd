@@ -4,7 +4,7 @@ format: html
 toc: True
 editor: visual
 ---
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 datos = mpg
 head(datos)
@@ -39,7 +39,8 @@ ggplot(data = datos, aes(x = class, y = cty)) +
   scale_color_manual(values = c("hotpink","goldenrod1","lightgreen","turquoise","deepskyblue1" ,"purple","salmon")) +
   labs(x = "Tipo de vehículo", y = "Rendimiento en ciudad")+
   theme(axis.text.x = element_text(size=12),
-        axis.title = element_text(size=12, face = "bold"))
+        axis.title = element_text(size=12, face = "bold"))+
+  geom_point(stat = "summary", fun = "mean", shape = 16, size = 1.5, color = "black")
 ```
 
 
@@ -48,6 +49,30 @@ ggplot(data = datos, aes(x = class, y = cty)) +
 #Problema 3
 
 **Construid un gráfico para mostrar el rendimiento medio en ciudad para cada clase y tipo de tracción simultáneamente.**
+
+
+
+```{r}
+datos %>% 
+  ggplot(aes(x = class, y = cty, fill = drv)) +
+  geom_bar(stat = "summary", fun = "mean", position = "dodge") +
+  labs(title = "Gráfico de Barras con Facetas",
+       x = "Tipo de vehículo",
+       y = "Media") +
+  facet_wrap(~ drv, ncol = 2)+
+  theme(axis.text.x = element_text(angle=90,size=12),
+        axis.title = element_text(size=12, face = "bold"))
+```
+
+
+
+
+
+
+
+
+
+
 
 #Problema 4
 **Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
