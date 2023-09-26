@@ -1,0 +1,6 @@
+---
+title: "Practica 2_IRENE_XISCO"
+format: html
+toc: True
+editor: visual
+---
