@@ -1,5 +1,6 @@
 ---
 title: "Practica 2_IRENE_XISCO"
+author: "Irene LiFeng Julià Pérez y Xisco Ribera Ramis"
 format: html
 toc: True
 editor: visual
@@ -9,7 +10,7 @@ library(tidyverse)
 datos = mpg
 head(datos)
 ```
-#Problema 1
+# Problema 1
 
 **Dibujad un gráfico que permita visualizar el número de vehículos de cada fabricante del conjunto de datos.**
 
@@ -24,7 +25,7 @@ datos %>%
 ```
 
 
-#Problema 2
+# Problema 2
 
 **Dibujad un gráfico para mostrar el rendimiento medio en ciudad para cada clase.**
 
@@ -46,7 +47,7 @@ ggplot(data = datos, aes(x = class, y = cty)) +
 
 
 
-#Problema 3
+# Problema 3
 
 **Construid un gráfico para mostrar el rendimiento medio en ciudad para cada clase y tipo de tracción simultáneamente.**
 
@@ -62,20 +63,54 @@ datos %>%
   facet_wrap(~ drv, ncol = 2)+
   theme(axis.text.x = element_text(angle=90,size=12),
         axis.title = element_text(size=12, face = "bold"))
+
+```
+
+
+
+# Problema 4
+
+**Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
+
+
+
+# Problema 5
+**Comparad la distribución del rendimiento en ciudad para distintos tipos de tracción.**
+
+```{r}
+ggplot(data = datos, aes(x = drv, y = cty)) +
+  geom_boxplot(aes(color = drv), width = 0.3, 
+               show.legend = FALSE)+ 
+  geom_jitter(aes(color = drv), alpha = 0.5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = 0.2, seed = 0))+
+  theme_bw()+
+  scale_color_manual(values = c("hotpink","goldenrod1","lightgreen")) +
+  labs(x = "Tipo de tracción", y = "Rendimiento en ciudad")+
+  theme(axis.text.x = element_text(size=12),
+        axis.title = element_text(size=12, face = "bold"))+
+  geom_point(stat = "summary", fun = "mean", shape = 16, size = 1.5, color = "black")
+```
+
+
+```{r}
+datos %>% 
+  ggplot(aes(x = cty)) +
+  geom_histogram(aes(fill = drv), 
+                 alpha = 0.5, 
+                 position = "identity",
+                 na.rm = TRUE) +
+  facet_grid(.~drv) +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Rendimiento en ciudad",
+       y = "Frecuencia absoluta") +
+  guides(fill = guide_legend(title = "Tipo de tracción")) +
+  theme_bw() +
+  theme(axis.text = element_text(size=10),
+        axis.title = element_text(size=10, face = "bold"),
+        legend.title = element_text(size=10))
 ```
 
 
 
 
-
-
-
-
-
-
-
-#Problema 4
-**Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
-
-#Problema 5
-**Comparad la distribución del rendimiento en ciudad para distintos tipos de tracción.**
