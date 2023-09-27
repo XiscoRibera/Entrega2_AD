@@ -55,10 +55,12 @@ ggplot(data = datos, aes(x = class, y = cty)) +
 datos %>% 
   ggplot(aes(x = class, y = cty, fill = drv)) +
   geom_bar(stat = "summary", fun = "mean", position = "stack") +
-  labs(title = "Gráfico de Barras con Facetas",
+  labs(title = "Gráfico de los rendimientos medios en ciudad en\nfunción de cada clase y tipo de tracción",
        x = "Tipo de vehículo",
        y = "Media") +
-  facet_wrap(~ drv, ncol = 2)+
+  guides(fill = guide_legend(title = "Tipo de tracción"))+
+  facet_wrap(~ drv, ncol = 1)+
+  theme_bw()+
   theme(axis.text.x = element_text(angle=90,size=12),
         axis.title = element_text(size=12, face = "bold"))
 
