@@ -88,6 +88,8 @@ ggplot(datos) +
 
 Observamos que, al ser la variable `cyl` del tipo *int*, hay muchas observaciones con el mismo valor.
 
+Notemos que a simple vista, cuanto menos cilindradas tenga el vehículo, más rendimiento tiene. Eso se debe a que el consumo de el combustile es directamente proporcional al número de cilindros que posee. Por tanto, con la misma cantidad de combustible, el vehículo que tenga menor cilindrada recorrerá mayor distancia y su rendimiento será más alto.
+
 # Problema 5
 **Comparad la distribución del rendimiento en ciudad para distintos tipos de tracción.**
 
