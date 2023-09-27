@@ -14,7 +14,6 @@ head(datos)
 
 # Problema 1
 
-
 **Dibujad un gráfico que permita visualizar el número de vehículos de cada fabricante del conjunto de datos.**
 
 ```{r}
@@ -29,7 +28,6 @@ datos %>%
 
 
 # Problema 2
-
 
 **Dibujad un gráfico para mostrar el rendimiento medio en ciudad para cada clase.**
 
@@ -51,7 +49,6 @@ ggplot(data = datos, aes(x = class, y = cty)) +
 
 # Problema 3
 
-
 **Construid un gráfico para mostrar el rendimiento medio en ciudad para cada clase y tipo de tracción simultáneamente.**
 
 ```{r}
@@ -72,7 +69,7 @@ datos %>%
 # Problema 4
 
 **Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
-
+fmjhfmj
 
 
 # Problema 5
