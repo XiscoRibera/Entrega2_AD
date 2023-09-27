@@ -110,7 +110,6 @@ datos %>%
         axis.title = element_text(size=10, face = "bold"),
         legend.title = element_text(size=10))
 
-# facet_grid(.~drv) +
 ```
 
 
