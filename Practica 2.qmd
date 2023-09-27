@@ -19,7 +19,7 @@ head(datos)
 ```{r}
 datos %>% 
   ggplot(aes(x=manufacturer))+
-  geom_bar(fill = "blue")+
+  geom_bar(fill = "darkseagreen3")+
   labs(x="Fabricante", y = "Número de vehículos")+
   theme_bw()+
   theme(axis.text.x = element_text(angle=90,size=12),
@@ -71,44 +71,44 @@ datos %>%
 # Problema 4
 
 **Utilizad un gráfico para mostrar la relación entre el tamaño del motor y el rendimiento en carretera, para cada clase de vehículo. ¿Qué podéis observar?**
-fmjhfmj
 
+
+```{r}
+ggplot(datos) +
+  geom_point(mapping = aes(x = cyl,
+                           y = hwy,
+                           color = class), size=2)+
+  theme_bw() +
+  theme(axis.text = element_text(size=10),
+        axis.title = element_text(size=10, face = "bold"),
+        legend.title = element_text(size=10)) + 
+  labs(x="Cilindrada del motor", y="Rendimiento en carretera")+
+  guides(fill = guide_legend(title = "Clase de vehículo"))
+```
+
+Observamos que, al ser la variable `cyl` del tipo *int*, hay muchas observaciones con el mismo valor.
 
 # Problema 5
 **Comparad la distribución del rendimiento en ciudad para distintos tipos de tracción.**
 
 ```{r}
-ggplot(data = datos, aes(x = drv, y = cty)) +
-  geom_boxplot(aes(color = drv), width = 0.3, 
-               show.legend = FALSE)+ 
-  geom_jitter(aes(color = drv), alpha = 0.5, 
-              show.legend = FALSE, 
-              position = position_jitter(width = 0.2, seed = 0))+
-  theme_bw()+
-  scale_color_manual(values = c("hotpink","goldenrod1","lightgreen")) +
-  labs(x = "Tipo de tracción", y = "Rendimiento en ciudad")+
-  theme(axis.text.x = element_text(size=12),
-        axis.title = element_text(size=12, face = "bold"))+
-  geom_point(stat = "summary", fun = "mean", shape = 16, size = 1.5, color = "black")
-```
-
-
-```{r}
 datos %>% 
   ggplot(aes(x = cty)) +
-  geom_histogram(aes(fill = drv), 
+  geom_density(aes(fill = drv), 
                  alpha = 0.5, 
                  position = "identity",
-                 na.rm = TRUE) +
-  facet_grid(.~drv) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+                 na.rm = TRUE,
+               color = NA) +
+  scale_fill_manual(values = c("#089392","#CF597E","#EAE29C")) +
   labs(x = "Rendimiento en ciudad",
-       y = "Frecuencia absoluta") +
+       y = "Densidad") +
   guides(fill = guide_legend(title = "Tipo de tracción")) +
   theme_bw() +
   theme(axis.text = element_text(size=10),
         axis.title = element_text(size=10, face = "bold"),
         legend.title = element_text(size=10))
+
+# facet_grid(.~drv) +
 ```
 
 
