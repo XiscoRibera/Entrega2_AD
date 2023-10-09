@@ -107,5 +107,3 @@ datos %>%
         legend.title = element_text(size=10))
 
 ```
-
-prueba
